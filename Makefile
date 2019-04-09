@@ -29,17 +29,18 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all:	$(NAME)
 
 $(NAME):		text $(OBJS)
-				@echo "\x1b[32;01mCompilation Lib\x1b[32;01m"
+				@echo "\x1b[32;01mCompiling libft...\x1b[32;01m"
 				@make -C ./libft
 				@cp libft/libft.a $(NAME)
 				@ar rc $(NAME) $(OBJS)
+				@echo "\x1b[32;01mYour libftprintf.a is ready\x1b[32;01m"
 
 text:
-				@echo "Compilation"
+				@echo "\x1b[32;01mCompiling libftprintf.a...\x1b[32;01m"
 
 $(OBJS):		$(DIR_O)/%.o: $(DIR_S)/%.c includes/ft_printf.h
 				@mkdir -p $(DIR_O)
-				gcc $(FLAGS) -I includes -o $@ $<
+				@gcc $(FLAGS) -I includes -o $@ $<
 clean:
 				@echo "\033[34mDeliting o-files\033[0m"
 				@/bin/rm -rf $(DIR_O)

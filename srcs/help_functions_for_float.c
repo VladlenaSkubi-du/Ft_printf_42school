@@ -6,16 +6,11 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 04:10:34 by sbecker           #+#    #+#             */
-/*   Updated: 2019/04/01 20:44:18 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/03/27 13:42:33 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-**You send the len of the string with the nb in binary and return the len in
-**10-system
-*/
 
 int		find_len_integer(int len_s)
 {
