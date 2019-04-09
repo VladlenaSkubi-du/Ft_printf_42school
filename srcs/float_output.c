@@ -6,7 +6,7 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:47:27 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:39:59 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 15:13:46 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ char	*get_string_with_precision(t_fcomp *fcomp, t_all *all)
 		return (get_string_int_fract(fcomp, all->precision));
 	return (s);
 }
+
+/*
+**All the work with floats starts here. If there is a modifier L, long double,
+**we work with the other type-size, that is why, all the functions are special.
+**Let's go to the file get_float_components. Than we will return.
+*/
 
 void	do_float(t_all *all, va_list *ap, char *str)
 {

@@ -6,11 +6,16 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 04:10:34 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:42:33 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:27:43 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**Find length of the decimal in according to its length in binary. Adds 2 for
+**some reason, for the sign and so on.
+*/
 
 int		find_len_integer(int len_s)
 {
@@ -34,6 +39,11 @@ int		find_len_integer(int len_s)
 	return (res + 2);
 }
 
+/*
+**Deletes all the zeros before the integer - that is because of the
+**reverse order used during the work.
+*/
+
 void	norm_integer(t_fcomp *fcomp)
 {
 	register int	i;
@@ -45,6 +55,10 @@ void	norm_integer(t_fcomp *fcomp)
 		i--;
 	fcomp->len_integer = i + 2;
 }
+
+/*
+**Is needed for long ariphmetics
+*/
 
 void	processing_overflow_integerpart(t_fcomp *fcomp)
 {
@@ -60,6 +74,10 @@ void	processing_overflow_integerpart(t_fcomp *fcomp)
 		fcomp->len_integer++;
 }
 
+/*
+**Is needed for the float part rounding if there is 5.
+*/
+
 int		check_5(t_fcomp *fcomp, int count)
 {
 	register int	i;
@@ -70,6 +88,10 @@ int		check_5(t_fcomp *fcomp, int count)
 			return (1);
 	return (0);
 }
+
+/*
+**Is needed for the float part rounding for all the numbers.
+*/
 
 char	*get_string_integer(t_fcomp *fcomp)
 {

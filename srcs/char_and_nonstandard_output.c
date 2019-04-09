@@ -6,7 +6,7 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 12:50:06 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 11:46:24 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:57:11 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	do_n(t_all *all, va_list *ap)
 	ptr = va_arg(*ap, int*);
 	*ptr = all->symbol_num;
 }
+
+/*
+**Width and 0- flags can work with char type.
+*/
 
 char	*width_processing(char *str, int len, t_all *all)
 {
@@ -76,6 +80,11 @@ char	*re_strncpy(char *src, int n)
 	ft_strdel(&src);
 	return (new);
 }
+
+/*
+**If width equals or more than the strings, string is output as usual.
+**Otherwise it is shortened.
+*/
 
 void	do_string(t_all *all, va_list *ap, char *str)
 {
