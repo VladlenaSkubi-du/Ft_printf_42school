@@ -20,6 +20,7 @@ Clone the repository:
 Get into it and compile the project's libftprintf.a:
 
 	cd [folder's name you want]
+	git submodule add https://github.com/VladlenaSkubi-du/libft_42school.git libft
 	make
 
 You will see a new folder obj/ and a library libftpritnf.a. After you make:
