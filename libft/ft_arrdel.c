@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.1.c                                       :+:      :+:    :+:   */
+/*   ft_arrdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcorwin <jcorwin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 20:41:40 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/05/13 19:00:30 by jcorwin          ###   ########.fr       */
+/*   Created: 2019/10/01 20:18:33 by sschmele          #+#    #+#             */
+/*   Updated: 2019/10/01 20:18:51 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void			ft_arrdel(char **arr)
 {
-	size_t			*l_ptr;
-	unsigned char	*str;
+	int			i;
 
-	l_ptr = (size_t *)s;
-	while (n >= sizeof(size_t))
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i])
 	{
-		*l_ptr++ = 0;
-		n -= sizeof(size_t);
+		free(arr[i]);
+		i++;
 	}
-	str = (unsigned char *)l_ptr;
-	while (n--)
-		*str++ = 0;
+	free(arr);
+	arr = NULL;
 }

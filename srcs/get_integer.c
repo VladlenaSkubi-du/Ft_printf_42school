@@ -6,11 +6,15 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 01:07:03 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:55:17 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:18:43 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**We get the long double integer (before the point) part in binary
+*/
 
 char	*bit_integer_l(long exponent_l, t_int128 bl, int *len)
 {
@@ -38,6 +42,10 @@ char	*bit_integer_l(long exponent_l, t_int128 bl, int *len)
 	return (b_integer);
 }
 
+/*
+**We get the float or double integer (before the point) part in binary
+*/
+
 char	*bit_integer(long exponent, long b, int *len)
 {
 	register int	i;
@@ -61,6 +69,11 @@ char	*bit_integer(long exponent, long b, int *len)
 			b_integer[i] = ((1l << (52 - i)) & b) ? '1' : '0';
 	return (b_integer);
 }
+
+/*
+**In order to get a number using long ariphmetics we multipy each 1 in binary
+**by 2 raised to some power. Here we get it.
+*/
 
 void	get_power(int power, int *num, t_fcomp *fcomp)
 {
@@ -96,6 +109,11 @@ void	countup_integer(t_fcomp *fcomp, int *num)
 		fcomp->integer[count] %= 10;
 	}
 }
+
+/*
+**Here we get decimal int from the binary int with the help of long ariphmetics
+**All the numbers are saved in reverse order - from right to left
+*/
 
 void	get_integer(char *b_integer, t_fcomp *fcomp)
 {

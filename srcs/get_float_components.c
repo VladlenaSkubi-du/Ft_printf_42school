@@ -6,7 +6,7 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 17:49:23 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:53:39 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:07:58 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ int		exception_handl_l(t_fcomp *fcomp, t_int128 bl, long exponent_l)
 	}
 	return (0);
 }
+
+/*
+**For the long double. According to IEEE 754 for the calculations you use sign,
+**exponent (15 bit) and mantissa (64 used bit). In the end you have 80 bit (some
+**are not used). Ft_printf gets the binary and than the decimal part of the
+**number before the point and after.
+*/
 
 void	get_components_l(va_list *ap, t_fcomp *fcomp)
 {
@@ -63,6 +70,10 @@ void	get_components_l(va_list *ap, t_fcomp *fcomp)
 	free(b_integer);
 }
 
+/*
+**Exceptions are denormalized numbers, infinity and not-numbers.
+*/
+
 int		exception_handling(t_fcomp *fcomp, long b, long exponent)
 {
 	fcomp->inf_check = 0;
@@ -84,6 +95,14 @@ int		exception_handling(t_fcomp *fcomp, long b, long exponent)
 	}
 	return (0);
 }
+
+/*
+**For the float and double. Because float works like double. According to IEEE
+**754 for the calculations you use sign, exponent (8 bit for float and 11 bit
+**for double and mantissa (23 bit for float and 52 for double). In the end you
+**have 32 bits for float and 64 bits for double. Ft_printf gets the binary
+**and than the decimal part of the number before the point and after.
+*/
 
 void	get_components(va_list *ap, t_fcomp *fcomp)
 {

@@ -6,11 +6,15 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 21:14:38 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:54:06 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:18:41 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**We get the long double float (after the point) part in binary
+*/
 
 char	*bit_fraction_l(long *exponent_l, t_int128 bl, int *len)
 {
@@ -40,6 +44,10 @@ char	*bit_fraction_l(long *exponent_l, t_int128 bl, int *len)
 	*exponent_l = (*exponent_l == -16383) ? -16382 : *exponent_l;
 	return (b_fraction);
 }
+
+/*
+**We get the float or double float (after the point) part in binary
+*/
 
 char	*bit_fraction(long *exponent, long b, int *len)
 {
@@ -82,6 +90,11 @@ void	countup_fraction(t_fcomp *fcomp, int *num, char bit, int *count)
 	*count = -1;
 }
 
+/*
+**In order to get a number using long ariphmetics we multipy each 1 in binary
+**by 1/(2 raised to some power) = 1/2, 1/4, 1/8 etc. Here we get it.
+*/
+
 void	get_negative_power(t_fcomp *fcomp, int *num, int i)
 {
 	int	count;
@@ -100,6 +113,12 @@ void	get_negative_power(t_fcomp *fcomp, int *num, int i)
 		num[count] %= 10;
 	}
 }
+
+/*
+**Here we get decimal float from the binary float with the help of long
+**ariphmetics. All the numbers are saved in reverse order -
+**from right to left.
+*/
 
 void	get_fraction(char *b_fraction, t_fcomp *fcomp)
 {

@@ -6,7 +6,7 @@
 /*   By: sbecker <sbecker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 10:48:53 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 10:46:59 by sbecker          ###   ########.fr       */
+/*   Updated: 2019/04/09 15:15:58 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void		initialization(t_all *all)
 	all->modifier = 0;
 	all->type = 0;
 }
+
+/*
+**We follow the string and check all the specifications. Ft_printf won't work
+**if specifications stay not in the right order.
+*/
 
 char		*processing_and_output(t_all *all, char *s, va_list *ap)
 {
@@ -70,6 +75,16 @@ char		*merge_strings(char *s1, int len_1, char *s2, size_t n)
 	ft_strdel(&s1);
 	return (new);
 }
+
+/*
+**Everything starts from here. We start to work with arguments and the string
+**with the description of the needed output. If the function finds % in the
+**string, it initializes the structure for all the specifications and
+**continues with the processing. If not, it saves everything in the string
+**and prints it with write.
+**In general, ft_printf saves everything in one string with the help of the
+**function merge_strings and outputs it only once - that makes ft_printf faster.
+*/
 
 int			ft_printf(const char *str, ...)
 {

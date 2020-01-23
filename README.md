@@ -4,7 +4,7 @@ This ft_printf deals with the following parameters:
 1) types char, string and pointer - %c, %s, %p
 2) types int, int in octal system, unsigned int, int in hexadecimal system (upper and lower case) - %d, %i, %o, %u, %x, %X, - and also %D (long and long long int), %O (long and long long int in octimal system), %U (unsigned long and long long int) with the modifiers h (short or unsigned short), hh (char or unsigned char), l (long int or unsigned long int) and ll(long long or unsigned long long)
 3) types float, double and long double with the modifier L - %f, %lf, %Lf and also %F that is a different type in some tests
-4) it works with %%, with the precision, width and * instead of precision and width
+4) it works with %%, with the precision, width and * instead of precision and width and with the %n type
 5) flags #0-+ and space
 6) And the bonus-type - the %b one which is int in binary
 

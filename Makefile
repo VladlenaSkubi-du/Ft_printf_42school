@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-FLAGS = -c -Wall -Werror -Wextra
+FLAGS = -c -O3 -Wall -Werror -Wextra
 
 SOURCES = ft_printf.c \
 	   processing_functions.c \
@@ -29,7 +29,6 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all:	$(NAME)
 
 $(NAME):		text $(OBJS)
-				@echo "\x1b[32;01mCompiling libft...\x1b[32;01m"
 				@make -C ./libft
 				@cp libft/libft.a $(NAME)
 				@ar rc $(NAME) $(OBJS)

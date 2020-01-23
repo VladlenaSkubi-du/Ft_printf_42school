@@ -6,11 +6,16 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 16:43:46 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 11:46:34 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:59:29 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**Most of the types work in a special way with zero. And int type can have a
+**sign, therefore also works differently with width, precision and flags.
+*/
 
 void		do_int(t_all *all, va_list *ap, char *str)
 {

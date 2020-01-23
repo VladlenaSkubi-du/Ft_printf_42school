@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sschmele <sschmele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:29:22 by sschmele          #+#    #+#             */
-/*   Updated: 2019/01/13 14:08:32 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/09/14 15:42:41 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ static char		**split_it_for_me(const char *s, char c, int len_p, char **av)
 	return (av);
 }
 
-static int		get_words_nb(const char *s, char c, int i)
+static int		get_words_nb(const char *s, char c)
 {
+	int			i;
 	int			nb;
 
+	i = 0;
 	nb = 0;
 	while (s[i])
 	{
@@ -74,18 +76,15 @@ static int		get_words_nb(const char *s, char c, int i)
 
 char			**ft_strsplit(char const *s, char c)
 {
-	int			i;
 	char		**av;
 	int			ac;
 	int			len_p;
 
 	if (!(s && c))
 		return (NULL);
-	i = 0;
-	av = 0;
 	len_p = 0;
-	ac = get_words_nb(s, c, i);
-	if (!(av = (char**)malloc(ac * sizeof(char*) + 1)))
+	ac = get_words_nb(s, c);
+	if (!(av = (char**)malloc((ac + 1) * (sizeof(char*)))))
 		return (NULL);
 	split_it_for_me(s, c, len_p, av);
 	return (av);

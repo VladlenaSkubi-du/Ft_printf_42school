@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strchri.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschmele <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jcorwin <jcorwin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 16:28:33 by sschmele          #+#    #+#             */
-/*   Updated: 2019/10/25 16:28:37 by sschmele         ###   ########.fr       */
+/*   Created: 2018/11/24 17:19:41 by jcorwin           #+#    #+#             */
+/*   Updated: 2019/07/05 14:26:51 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strchr(const char *s, int c)
+int			ft_strchri(char *s, int c)
 {
 	size_t			*iter;
-	unsigned char	*end;
+	char			*end;
 	size_t			mask;
 	int				i;
 
@@ -23,19 +23,19 @@ char		*ft_strchr(const char *s, int c)
 	i = -1;
 	while (++i < (int)sizeof(size_t))
 		mask |= ((size_t)(1 + (size_t)c) << ((size_t)i * 8));
-	end = (unsigned char *)s;
+	end = (char *)s;
 	while ((size_t)end % sizeof(size_t))
 	{
 		if (*end == (unsigned char)c || *end == '\0')
-			return (*end == (unsigned char)c ? (char *)end : NULL);
+			return (*end == (char)c ? (int)(end - s) : -1);
 		++end;
 	}
 	iter = (size_t *)end;
 	while (((*iter - mask) & ~(*iter) & 0x8080808080808080) == 0 &&
 			((*iter - 0x0101010101010101) & ~(*iter) & 0x8080808080808080) == 0)
 		iter++;
-	end = (unsigned char *)iter;
-	while (*end && *end != (unsigned char)c)
+	end = (char *)iter;
+	while (*end && *end != (char)c)
 		++end;
-	return (*end == (unsigned char)c ? (char *)end : NULL);
+	return (*end == (char)c ? (int)(end - s) : -1);
 }

@@ -6,11 +6,16 @@
 /*   By: sbecker <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 17:05:30 by sbecker           #+#    #+#             */
-/*   Updated: 2019/03/27 13:44:59 by sschmele         ###   ########.fr       */
+/*   Updated: 2019/04/09 15:55:11 by sschmele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**Some flags can't logically work with each other. That is undefined behavior.
+**Ft_printf works with it.
+*/
 
 char	*check_flags(t_all *all, char *s)
 {
@@ -56,6 +61,12 @@ char	*check_width_or_precision(t_all *all, char *s, va_list *ap, char flag)
 	}
 	return (s);
 }
+
+/*
+**Zero will be for no modifier and just type. 1 - for short, 2 - for char or
+**unsigned char, 3 - for long, 4 - for long long, 5 - special L one that
+**functions only with floats and forms the long double type.
+*/
 
 char	*check_modifier(t_all *all, char *s)
 {
